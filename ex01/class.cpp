@@ -1,16 +1,6 @@
-class Contact {
-    char *first_name;
-    char *last_name;
-    int number;
-    char *email;
-}
 
-class PhoneBook {
-    public:
-        int contacts[8];
-        void ADD(class Contact);
-        Contact SEARCH(class Contact);
-        void EXIT(void);
+Contact::Contact() {
+        std::cout << "Contact created" << std::endl;
 }
 
 void PhoneBook::ADD(class Contact) {
