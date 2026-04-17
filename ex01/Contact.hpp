@@ -1,3 +1,10 @@
+#ifndef CONTACT_HPP
+
+#define CONTACT_HPP
+
+#include <string>
+//<string> allows to use std::string
+
 //constructor:
 //function that runs automatically when create an object
 //initialize object
@@ -15,26 +22,13 @@ private:
 	std::string nickname;
 	std::string phone_number;
 	std::string darkest_secret;
-public;
-	Contact(); //default constructor
-	display data;
-}
-
-class PhoneBook {
 public:
-        int contacts[8];
-        void ADD(class Contact);
-        Contact SEARCH(class Contact);
-        void EXIT(void);
-}
+	//public are the functions to interact with the class
+	void set_Contact(); //default constructor
+	void display_all_Contacts(int index) const;
+	void display_one_Contact() const;
+	//const is used to indicate that the function does not modify the object
+	//as the functions display only show, they show not modify
+};
 
-Contact::Contact() {
-	std::cout << "Contact created" << std::endl;
-}
-
-
-void PhoneBook::ADD(class Contact);
-class Contact   PhoneBook::SEARCH(class Contact);
-void    PhoneBook::EXIT(void);
-
-
+#endif
