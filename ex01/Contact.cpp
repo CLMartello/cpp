@@ -5,6 +5,7 @@
 //<iomanip> is to input and output manipulation, allows use string with define size
 #include <string>
 #include <cctype>
+#include <cstdlib>
 
 
 static std::string getInput(const std::string& prompt) {
@@ -34,7 +35,7 @@ static std::string getInput(const std::string& prompt) {
     }
 }
 
-void    Contact::set_Contact() {
+void    Contact::setContact() {
     first_name = getInput("Insert first name of Contact: ");
     last_name = getInput("Insert last name of Contact: ");
     nickname = getInput("Insert nickname of Contact: ");
@@ -48,14 +49,14 @@ static std::string formatw(std::string str) {
     return std::string(10 - str.length(), ' ') + str;
 }
 
-void    Contact::display_all_Contacts(int index) const {
+void    Contact::displayAllContacts(int index) const {
     std::cout << std::setw(10) << index << "|"
               << formatw(first_name) << "|"
               << formatw(last_name) << "|"
               << formatw(nickname) << std::endl;
 }
 
-void    Contact::display_one_Contact() const {
+void    Contact::displayOneContact() const {
     std::cout << "First name: " << first_name << std::endl;
     std::cout << "Last name: " << last_name << std::endl;
     std::cout << "Nickname: " << nickname << std::endl;

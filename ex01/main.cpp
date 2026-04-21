@@ -5,7 +5,7 @@
 //#include "Contact.hpp"
 // int    main() {
 //     Contact ct;
-//     ct.set_Contact();
+//     ct.setContact();
 //     ct.display_Contact();
 //     return 0;
 // }
@@ -16,12 +16,12 @@ int main() {
 
     while (1) {
         std::cout << "Enter one command: ADD, SEARCH, EXIT: ";
-        std::getline(std::cin, command);
-
+        if (!std::getline(std::cin, command))
+            break ;
         if (command == "ADD")
-            pb.add_Contact();
+            pb.addContact();
         else if (command == "SEARCH")
-            pb.search_Contact();
+            pb.searchContact();
         else if (command == "EXIT")
             break ;
         else

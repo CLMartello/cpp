@@ -24,9 +24,9 @@ private:
 	std::string darkest_secret;
 public:
 	//public are the functions to interact with the class
-	void set_Contact(); //default constructor
-	void display_all_Contacts(int index) const;
-	void display_one_Contact() const;
+	void setContact(); //default constructor
+	void displayAllContacts(int index) const;
+	void displayOneContact() const;
 	//const is used to indicate that the function does not modify the object
 	//as the functions display only show, they show not modify
 };
