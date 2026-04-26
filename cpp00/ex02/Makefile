@@ -8,32 +8,35 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Files #
 
-OBJS_DIR := objs
+OBJ_DIR = objs
 
-CPPFILES = Account.cpp tests.cpp
+SRC_DIR = src
 
-OBJS = $(CPPFILES:%.cpp=$(OBJS_DIR)/%.o)
+FILES = Account.cpp tests.cpp
+
+SRC := $(addprefix $(SRC_DIR)/,$(FILES))
+
+OBJ = $(addprefix $(OBJ_DIR)/,$(FILES:.cpp=.o))
 
 # Configuration #
 
-all: $(OBJS_DIR) $(NAME)
+all: $(NAME)
 
-$(OBJS_DIR):
-	@mkdir -p $@
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
 	@echo "Compiled objects."
 
-$(OBJS_DIR)/%.o: %.cpp
-	@mkdir -p $(dir $@)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
-
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $@
-	@echo "Compiled $(NAME)"
+	
+$(NAME): $(OBJ)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	@echo "Compiled $(NAME)."
 
 # Phonies #
 
 clean:
-	@rm -rf $(OBJS_DIR)
+	@rm -rf $(OBJ_DIR)
 	@echo "Cleaned object files"
 
 fclean: clean
@@ -41,3 +44,5 @@ fclean: clean
 	@echo "Removed program"
 
 re: fclean all
+
+.PHONY: all clean fclean re
