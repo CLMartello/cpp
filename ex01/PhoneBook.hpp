@@ -13,6 +13,7 @@ private:
 public:
     PhoneBook();
     void addContact();
+    void displayOneContact(int index) const;
     void searchContact() const;
 };
 

@@ -23,12 +23,17 @@ private:
 	std::string phone_number;
 	std::string darkest_secret;
 public:
+	Contact(); //constructor
 	//public are the functions to interact with the class
-	void setContact(); //default constructor
-	void displayAllContacts(int index) const;
-	void displayOneContact() const;
+	void setContact(); //setter
 	//const is used to indicate that the function does not modify the object
 	//as the functions display only show, they show not modify
+	//getter
+	std::string getFirstName() const;
+	std::string getLastName() const;
+	std::string getNickname() const;
+	std::string getPhoneNumber() const;
+	std::string getDarkestSecret() const;
 };
 
 #endif

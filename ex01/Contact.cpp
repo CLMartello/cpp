@@ -2,11 +2,12 @@
 #include "Contact.hpp"
 #include <iostream>
 #include <iomanip>
-//<iomanip> is to input and output manipulation, allows use string with define size
 #include <string>
 #include <cctype>
 #include <cstdlib>
 
+//constructor
+Contact::Contact() {}
 
 static std::string getInput(const std::string& prompt) {
     std::string input;
@@ -35,6 +36,26 @@ static std::string getInput(const std::string& prompt) {
     }
 }
 
+std::string Contact::getFirstName() const {
+    return (first_name);
+}
+
+std::string Contact::getLastName() const {
+    return (last_name);
+}
+
+std::string Contact::getNickname() const {
+    return (nickname);
+}
+
+std::string Contact::getPhoneNumber() const {
+    return (phone_number);
+}
+
+std::string Contact::getDarkestSecret() const {
+    return (darkest_secret);
+}
+
 void    Contact::setContact() {
     first_name = getInput("Insert first name of Contact: ");
     last_name = getInput("Insert last name of Contact: ");
@@ -43,24 +64,5 @@ void    Contact::setContact() {
     darkest_secret = getInput("Insert darkest secret: ");
 }
 
-static std::string formatw(std::string str) {
-    if (str.length() > 10)
-        return str.substr(0, 9) + ".";
-    return std::string(10 - str.length(), ' ') + str;
-}
 
-void    Contact::displayAllContacts(int index) const {
-    std::cout << std::setw(10) << index << "|"
-              << formatw(first_name) << "|"
-              << formatw(last_name) << "|"
-              << formatw(nickname) << std::endl;
-}
-
-void    Contact::displayOneContact() const {
-    std::cout << "First name: " << first_name << std::endl;
-    std::cout << "Last name: " << last_name << std::endl;
-    std::cout << "Nickname: " << nickname << std::endl;
-    std::cout << "Phone number: " << phone_number << std::endl;
-    std::cout << "Darkest secret: " << darkest_secret << std::endl;
-}
 

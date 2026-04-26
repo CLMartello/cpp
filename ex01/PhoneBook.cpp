@@ -25,6 +25,27 @@ void    PhoneBook::addContact() {
     //goes to 8 and then stop counting, because max is 8
 }
 
+static std::string formatw(std::string str) {
+    if (str.length() > 10)
+        return str.substr(0, 9) + ".";
+    return std::string(10 - str.length(), ' ') + str;
+}
+
+static void    displayAllContacts(const Contact contact, int index) {
+    std::cout << std::setw(10) << index << "|"
+              << formatw(contact.getFirstName()) << "|"
+              << formatw(contact.getLastName()) << "|"
+              << formatw(contact.getNickname()) << std::endl;
+}
+
+void    PhoneBook::displayOneContact(int index) const {
+    std::cout << "First name: " << contacts[index].getFirstName() << std::endl;
+    std::cout << "Last name: " << contacts[index].getLastName() << std::endl;
+    std::cout << "Nickname: " << contacts[index].getNickname() << std::endl;
+    std::cout << "Phone number: " << contacts[index].getPhoneNumber() << std::endl;
+    std::cout << "Darkest secret: " << contacts[index].getDarkestSecret() << std::endl;
+}
+
 static bool isNumber (std::string number) {
     for (int i = 0; number[i]; i++) {
         if (!std::isdigit(number[i])) {
@@ -41,7 +62,7 @@ void    PhoneBook::searchContact() const {
     }
     std::cout << "     Index|First Name| Last Name|  Nickname" << std::endl;
     for (int i = 0; i < total; i++)
-        contacts[i].displayAllContacts(i);
+        displayAllContacts(contacts[i], i);
     std::cout << "Enter index of Contact: ";
     std::string input;
     std::getline(std::cin, input);
@@ -49,5 +70,5 @@ void    PhoneBook::searchContact() const {
     if (input.empty() || isNumber(input) == false || index < 0 || index >= total)
         std::cout << "Invalid index." << std::endl;
     else
-        contacts[index].displayOneContact();
+        displayOneContact(index);
 }
