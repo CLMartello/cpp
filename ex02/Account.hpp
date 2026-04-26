@@ -17,29 +17,33 @@
 // ************************************************************************** //
 
 class Account {
-
+//class Account have attributes that are inside each account
+//but also have attributes that are global to all account created
 
 public:
+//public methods identify functions
 
 	typedef Account		t;
 
+	//getter
 	static int	getNbAccounts( void );
 	static int	getTotalAmount( void );
 	static int	getNbDeposits( void );
 	static int	getNbWithdrawals( void );
-	static void	displayAccountsInfos( void );
+	static void	displayAccountsInfos( void ); //display all informations of numerous accounts
 
-	Account( int initial_deposit );
-	~Account( void );
+	Account( int initial_deposit ); // constructor
+	~Account( void ); //destructor
 
-	void	makeDeposit( int deposit );
-	bool	makeWithdrawal( int withdrawal );
-	int		checkAmount( void ) const;
-	void	displayStatus( void ) const;
+	void	makeDeposit( int deposit ); //adds money
+	bool	makeWithdrawal( int withdrawal ); //removes money
+	int		checkAmount( void ) const; //print amount
+	void	displayStatus( void ) const; //display for one account
 
 
 private:
-
+//static attibutes are these
+//the same as global attributes, shared among accounts
 	static int	_nbAccounts;
 	static int	_totalAmount;
 	static int	_totalNbDeposits;
@@ -47,6 +51,7 @@ private:
 
 	static void	_displayTimestamp( void );
 
+//member attributes, one set per account
 	int				_accountIndex;
 	int				_amount;
 	int				_nbDeposits;

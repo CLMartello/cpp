@@ -1,6 +1,6 @@
 # Flags #
 
-NAME = megaphone
+NAME = testLog
 
 CC = c++
 
@@ -10,7 +10,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJS_DIR := objs
 
-CPPFILES = megaphone.cpp
+CPPFILES = Account.cpp tests.cpp
 
 OBJS = $(CPPFILES:%.cpp=$(OBJS_DIR)/%.o)
 
