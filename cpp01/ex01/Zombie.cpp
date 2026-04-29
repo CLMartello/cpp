@@ -6,6 +6,7 @@ Zombie::Zombie() {};
 Zombie::Zombie( std::string name ) {
     _name = name;
 }
+//function constructor using in creation
 
 // Zombie::Zombie (std::string name) : _name(name) {};
 
@@ -21,5 +22,8 @@ void    Zombie::announce( void ) {
 void    Zombie::setName( std::string name ) {
     _name = name;
 }
+//function used after creation, to modify object that already exists
+//necessary because of use of new Zombie[N]
+//new Zombie[N] does not use Zombie(std::string name), it uses the default constructor no parameters
 
 
