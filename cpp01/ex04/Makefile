@@ -1,6 +1,6 @@
 # Flags #
 
-NAME = zombie
+NAME = replace
 
 CC = c++
 
@@ -10,7 +10,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJS_DIR := objs
 
-CPPFILES = Zombie.cpp newZombie.cpp randomChump.cpp main.cpp
+CPPFILES = main.cpp
 
 OBJS = $(CPPFILES:%.cpp=$(OBJS_DIR)/%.o)
 
