@@ -85,6 +85,7 @@ bool    Fixed::operator!=(const Fixed &fixed) const {
 
 Fixed   Fixed::operator+(const Fixed &fixed) const {
     Fixed   result;
+    //temp result is needed because this function must not modify the other 2 fixed
     result._raw = this->_raw + fixed._raw;
     return (result);
 }
@@ -108,31 +109,65 @@ Fixed Fixed::operator/(const Fixed &fixed) const {
 }
 
 Fixed &Fixed::operator++(void) {
+    //pre-increment ++a
+    //pre-increment modify object, so can be done directly
     ++_raw;
     return (*this);
 }
 
 Fixed Fixed::operator++(int) {
-    Fixed   result(*this);
-    ++_raw;
-    return (result);
+    //post-increment a++
+    //int argument is just to compilet knows it is a post-increment
+    //post-increment does NOT modify object, so need to use temp result
+    Fixed   result(*this); //makes a copy of the old object
+    ++_raw; //increment the new object result
+    return (result); //return the new object
 }
 
 Fixed &Fixed::operator--(void) {
+    //pre-decrement --a
+    //modifies the current object, so can return the reference to it
     --_raw;
     return (*this);
 }
 
 Fixed Fixed::operator--(int) {
+    //post-decrement a--
+    //dont modify the current object, creates a temp and return the modify copy
+    //post-action works as 1. save olf value, 2.modify original, 3.return original modified
+    //original object has the decrement happened, but the return of the function is the old value copy
+    //it is what cpp wait to happen, not what is logic
     Fixed   result(*this);
     --_raw;
     return (result);
 }
 
-static Fixed &Fixed::min(Fixed &a, Fixed &b) {}
+Fixed &Fixed::min(Fixed &a, Fixed &b) {
+    return ((a < b) ? a : b);
+    //ternary operatorm, compact if/else
+    //(a < b) == if a < b
+    //? a == is true, return a
+    //: b == is false, return n
+}
+//function version NON-const
+//allows modification to object arguments
+//and allows to return a modified reference
 
-static const Fixed &Fixed::min(const Fixed &a, const Fixed &b) {}
+const Fixed &Fixed::min(const Fixed &a, const Fixed &b) {
+    return ((a < b) ? a : b);
+}
+//function version CONST
+//takes read-only objects
+//return read-only reference
 
-static Fixed &Fixed::max(Fixed &a, Fixed &b) {}
+//return by reference to allows no copying, faster, works directly on original objects
+//but it can only return a or b, not anything else
+//it is not a copy, it is the reference to the object a or b
 
-static const Fixed &Fixed::max(const Fixed &a, const Fixed &b) {}
+Fixed &Fixed::max(Fixed &a, Fixed &b) {
+    return ((a > b) ? a : b);
+}
+
+const Fixed &Fixed::max(const Fixed &a, const Fixed &b) {
+    return ((a > b) ? a : b);
+}
