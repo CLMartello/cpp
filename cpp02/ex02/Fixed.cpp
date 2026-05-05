@@ -98,13 +98,13 @@ Fixed Fixed::operator-(const Fixed &fixed) const {
 
 Fixed Fixed::operator*(const Fixed &fixed) const {
     Fixed   result;
-    result._raw = this->_raw * fixed._raw;
+    result._raw = (this->_raw * fixed._raw) >> _bits;
     return (result);
 }
 
 Fixed Fixed::operator/(const Fixed &fixed) const {
     Fixed   result;
-    result._raw = this->_raw / fixed._raw;
+    result._raw = (this->_raw << _bits) / fixed._raw;
     return (result);
 }
 
@@ -136,7 +136,7 @@ Fixed Fixed::operator--(int) {
     //dont modify the current object, creates a temp and return the modify copy
     //post-action works as 1. save olf value, 2.modify original, 3.return original modified
     //original object has the decrement happened, but the return of the function is the old value copy
-    //it is what cpp wait to happen, not what is logic
+    //it is what cpp wait to happen, not what is logiccd
     Fixed   result(*this);
     --_raw;
     return (result);
