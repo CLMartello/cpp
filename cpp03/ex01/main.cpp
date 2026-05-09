@@ -1,37 +1,58 @@
 
+#include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 
 int main() {
-    std::cout << "\n--- Constructors ---\n";
-    ClapTrap a("Alpha");
-    ScavTrap b("Guardian");
+    std::cout << "\n=== CONSTRUCTION TEST ===\n";
 
-    std::cout << "\n--- Basic attacks ---\n";
-    a.attack("Guardian");
-    b.attack("Alpha");
+    ClapTrap a("ClapA");
+    ScavTrap b("ScavB");
 
-    std::cout << "\n--- Damage & repair ---\n";
+    std::cout << "\n=== BASIC ATTACK TEST ===\n";
+
+    a.attack("ScavB");
+    b.attack("ClapA");
+
+    std::cout << "\n=== DAMAGE TEST ===\n";
+
     b.takeDamage(30);
-    b.beRepaired(10);
+    b.takeDamage(50);
 
-    std::cout << "\n--- Special ability ---\n";
+    std::cout << "\n=== REPAIR TEST ===\n";
+
+    b.beRepaired(20);
+    b.beRepaired(50);
+
+    std::cout << "\n=== SPECIAL ABILITY TEST ===\n";
+
     b.guardGate();
 
-    std::cout << "\n--- Energy test ---\n";
+    std::cout << "\n=== ENERGY DEPLETION TEST ===\n";
+
     for (int i = 0; i < 55; i++) {
-        b.attack("Target");
+        b.attack("dummy_target");
     }
 
-    std::cout << "\n--- Death test ---\n";
-    b.takeDamage(200);
-    b.attack("Alpha");     // should not work
-    b.beRepaired(50);      // should not work
+    std::cout << "\n=== DEAD STATE TEST ===\n";
 
-    std::cout << "\n--- Copy test ---\n";
-    ScavTrap c(b);         // copy constructor
+    b.takeDamage(200);      // force HP = 0
+    b.attack("ClapA");      // should fail
+    b.beRepaired(10);       // should fail
+
+    std::cout << "\n=== COPY CONSTRUCTOR TEST ===\n";
+
+    ScavTrap c(b);          // copy constructor
+    c.guardGate();
+    c.attack("test");
+
+    std::cout << "\n=== ASSIGNMENT OPERATOR TEST ===\n";
+
     ScavTrap d;
-    d = b;                 // copy assignment
+    d = c;                  // assignment operator
+    d.attack("after_assign");
 
-    std::cout << "\n--- End of program ---\n";
+
+    std::cout << "\n=== END OF PROGRAM ===\n";
+
     return 0;
 }
