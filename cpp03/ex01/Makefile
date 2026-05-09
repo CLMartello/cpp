@@ -1,6 +1,6 @@
 # Flags #
 
-NAME = ClapTrap
+NAME = ScavTrap
 
 CC = c++
 
@@ -10,7 +10,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJS_DIR := objs
 
-CPPFILES = ClapTrap.cpp main.cpp
+CPPFILES = ClapTrap.cpp main.cpp ScavTrap.cpp
 
 OBJS = $(CPPFILES:%.cpp=$(OBJS_DIR)/%.o)
 
