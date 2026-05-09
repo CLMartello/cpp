@@ -1,56 +1,60 @@
-
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main() {
-    std::cout << "\n=== CONSTRUCTORS TEST ===\n";
+
+    std::cout << "\n=== CONSTRUCTION TEST ===\n";
 
     ClapTrap a("ClapA");
     std::cout << std::endl;
     ScavTrap b("ScavB");
     std::cout << std::endl;
     FragTrap c("FragC");
+    std::cout << std::endl;
+    DiamondTrap d("DiamondD");
 
-    std::cout << "\n=== ATTACK TEST ===\n";
+    std::cout << "\n=== BASIC ATTACK TEST ===\n";
 
-    a.attack("target1");
-    b.attack("target2");
-    c.attack("target3");
+    a.attack("enemy1");
+    b.attack("enemy2");
+    c.attack("enemy3");
+    d.attack("enemy4");
 
     std::cout << "\n=== DAMAGE / REPAIR TEST ===\n";
 
-    b.takeDamage(30);
-    b.beRepaired(10);
-    std::cout << std::endl;
-    c.takeDamage(50);
-    c.beRepaired(20);
+    d.takeDamage(40);
+    d.beRepaired(20);
 
     std::cout << "\n=== SPECIAL ABILITIES TEST ===\n";
 
     b.guardGate();
     std::cout << std::endl;
     c.highFivesGuys();
+    std::cout << std::endl;
+    d.whoAmI();
 
     std::cout << "\n=== ENERGY DEPLETION TEST ===\n";
 
-    for (int i = 0; i < 105; i++) {
-        c.attack("dummy");
+    for (int i = 0; i < 55; i++) {
+        d.attack("dummy");
     }
 
     std::cout << "\n=== DEATH STATE TEST ===\n";
 
-    c.takeDamage(200);
-    c.attack("should_not_work");
-    c.beRepaired(10);
+    d.takeDamage(500);
+    std::cout << std::endl;
+    d.attack("should_fail");
+    d.beRepaired(10);
 
     std::cout << "\n=== COPY CONSTRUCTOR TEST ===\n";
 
-    FragTrap c2(c);
+    DiamondTrap d2(d);
 
-    std::cout << "\n=== ASSIGNMENT OPERATOR TEST ===\n";
+    std::cout << "\n=== ASSIGNMENT TEST ===\n";
 
-    c = c2;
+    d = d2;
 
     std::cout << "\n=== END OF PROGRAM ===\n";
 

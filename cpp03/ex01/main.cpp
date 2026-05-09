@@ -6,6 +6,7 @@ int main() {
     std::cout << "\n=== CONSTRUCTION TEST ===\n";
 
     ClapTrap a("ClapA");
+    std::cout << std::endl;
     ScavTrap b("ScavB");
 
     std::cout << "\n=== BASIC ATTACK TEST ===\n";
@@ -15,12 +16,12 @@ int main() {
 
     std::cout << "\n=== DAMAGE TEST ===\n";
 
+    a.takeDamage(5);
     b.takeDamage(30);
-    b.takeDamage(50);
 
     std::cout << "\n=== REPAIR TEST ===\n";
 
-    b.beRepaired(20);
+    a.beRepaired(20);
     b.beRepaired(50);
 
     std::cout << "\n=== SPECIAL ABILITY TEST ===\n";
@@ -29,7 +30,7 @@ int main() {
 
     std::cout << "\n=== ENERGY DEPLETION TEST ===\n";
 
-    for (int i = 0; i < 55; i++) {
+    for (int i = 0; i < 50; i++) {
         b.attack("dummy_target");
     }
 
@@ -42,15 +43,10 @@ int main() {
     std::cout << "\n=== COPY CONSTRUCTOR TEST ===\n";
 
     ScavTrap c(b);          // copy constructor
-    c.guardGate();
-    c.attack("test");
 
     std::cout << "\n=== ASSIGNMENT OPERATOR TEST ===\n";
 
-    ScavTrap d;
-    d = c;                  // assignment operator
-    d.attack("after_assign");
-
+    b = c;                  // assignment operator
 
     std::cout << "\n=== END OF PROGRAM ===\n";
 
