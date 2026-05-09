@@ -5,9 +5,9 @@ Fixed::Fixed(): _raw(0) {
     std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed &copy) {
+Fixed::Fixed(const Fixed &copy)
+    : _raw(copy._raw) {
     std::cout << "Copy constructor called" << std::endl;
-    *this = copy;
 }
 
 Fixed &Fixed::operator=(const Fixed &copy) {

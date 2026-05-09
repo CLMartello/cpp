@@ -21,9 +21,9 @@ Fixed::Fixed(float const raw) {
     //otherwise 1356,8 will be 1356 and not 1357
 }
 
-Fixed::Fixed(const Fixed &copy) {
+Fixed::Fixed(const Fixed &copy)
+    : _raw(copy._raw) {
     std::cout << "Copy constructor called" << std::endl;
-    *this = copy;
 }
 
 Fixed &Fixed::operator=(const Fixed &copy) {
