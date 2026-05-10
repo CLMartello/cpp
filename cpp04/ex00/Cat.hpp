@@ -9,10 +9,12 @@ class Cat : public Animal {
 private:
 
 public:
-    Animal();
-    Animal(const Animal &copy);
-    Animal &operator=(const Animal &copy);
-    ~Animal();
+    Cat();
+    Cat(const Cat &copy);
+    Cat &operator=(const Cat &copy);
+    ~Cat();
+
+    void    makeSound() const;
 
 };
 

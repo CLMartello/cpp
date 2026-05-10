@@ -14,6 +14,7 @@ public:
     Dog &operator=(const Dog &copy);
     ~Dog();
 
+    void makeSound() const;
 };
 
 #endif

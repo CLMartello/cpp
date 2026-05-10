@@ -1,6 +1,6 @@
 # Flags #
 
-NAME = fixed
+NAME = animal
 
 CC = c++
 
@@ -10,7 +10,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJS_DIR := objs
 
-CPPFILES = Fixed.cpp main.cpp
+CPPFILES = Animal.cpp Dog.cpp Cat.cpp main.cpp WrongAnimal.cpp WrongCat.cpp
 
 OBJS = $(CPPFILES:%.cpp=$(OBJS_DIR)/%.o)
 

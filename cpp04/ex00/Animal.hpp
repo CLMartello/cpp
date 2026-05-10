@@ -4,6 +4,7 @@
 #define ANIMAL_HPP
 
 #include <string>
+#include <iostream>
 
 class Animal {
 protected:
@@ -14,10 +15,13 @@ public:
     Animal(const std::string type);
     Animal(const Animal &copy);
     Animal &operator=(const Animal &copy);
-    ~Animal();
+    virtual ~Animal();
+    //allows call child class destructor before parent class destructor
 
     const std::string getType() const;
-    void makeSound();
+    virtual void makeSound() const;
+    //virtual allow to run correct function at time
+    //will run dog makesound, not animal makesound
 
 };
 
