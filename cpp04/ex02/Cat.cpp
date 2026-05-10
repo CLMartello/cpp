@@ -14,8 +14,8 @@ Cat::Cat(const Cat &copy) : Animal(copy) {
 Cat &Cat::operator=(const Cat &copy) {
     if (this != &copy) {
         this->_type = copy._type;
-        delete this->_brain;
-        this->_brain = new Brain(*copy._brain);
+        delete _brain;
+        _brain = new Brain(*copy._brain);
     }
     std::cout << "Cat operator assignment called" << std::endl;
     return (*this);

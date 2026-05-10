@@ -3,20 +3,20 @@
 
 Dog::Dog() : Animal("Dog") {
     _brain = new Brain();
-    std::cout << "Sog default constructor called" << std::endl;
+    std::cout << "Dog default constructor called" << std::endl;
 }
 
 Dog::Dog(const Dog &copy) : Animal(copy) {
     this->_type = copy._type;
-    _brain = new Brain(*copy._brain);
+    this->_brain = new Brain(*copy._brain);
     std::cout << "Dog copy constructor called" << std::endl;
 }
 
 Dog &Dog::operator=(const Dog &copy) {
     if (this != &copy) {
         this->_type = copy._type;
-        delete _brain;
-        _brain = new Brain(*copy._brain);
+        delete this->_brain;
+        this->_brain = new Brain(*copy._brain);
     }
     std::cout << "Dog operator assignment called" << std::endl;
     return (*this);
