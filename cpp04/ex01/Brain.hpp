@@ -7,7 +7,7 @@
 #include <iostream>
 
 class Brain {
-private:
+protected:
     std::string _ideas[100];
 
 public:
@@ -15,6 +15,9 @@ public:
     Brain(const Brain &copy);
     Brain &operator=(const Brain &copy);
     ~Brain();
+
+    void    setIdea(int index, std::string idea);
+    std::string getIdea(int index) const;
 
 };
 

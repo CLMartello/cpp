@@ -16,12 +16,9 @@ public:
     Animal(const Animal &copy);
     Animal &operator=(const Animal &copy);
     virtual ~Animal();
-    //allows call child class destructor before parent class destructor
 
     const std::string getType() const;
     virtual void makeSound() const = 0;
-    // = 0 means i dont implement this function here
-    //this function is implemented in derived classes
 
 };
 

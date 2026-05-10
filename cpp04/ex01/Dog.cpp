@@ -30,3 +30,8 @@ Dog::~Dog() {
 void Dog::makeSound() const {
     std::cout << "AuAu" << std::endl;
 }
+
+Brain   *Dog::getBrain() const {
+    return (this->_brain);
+}
+
