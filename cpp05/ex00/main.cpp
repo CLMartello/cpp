@@ -1,21 +1,33 @@
 
 #include "Bureaucrat.hpp"
+#include <iostream>
 
 int	main()
 {
-	Beraucrat a = new Beraucrat("Nino", 120);
-	Beraucrat b = new Beraucrat("Morfeu", 2);
+	Bureaucrat a("Nino", 120);
+	Bureaucrat b("Morfeu", 2);
 
-	Beraucrat c = b;
+	Bureaucrat c = b;
 
-	c.incrementGrade;
-	try
-		c.incrementGrade;
+	std::cout << a;
+	std::cout << b;
+
+	try 
+	{
+		c.incrementGrade();
+		std::cout << c;
+		c.incrementGrade();
+	}
 	catch (std::exception &e)
-		std::cout << e.what();
-
+	{
+		std::cout << e.what() << std::endl;
+	}
 	try
-		Beraucrat d = new Beraucrat("Lorena", 500);
+	{
+		Bureaucrat d("Lorena", 500);
+	}
 	catch (std::exception &e)
-		std::cout << e.what();
+	{
+		std::cout << e.what() << std::endl;
+	}
 }
