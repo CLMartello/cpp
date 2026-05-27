@@ -6,10 +6,12 @@
 #include <string>
 #include <exception>
 
+class Form;
+
 class	Bureaucrat {
 private:
 	const std::string	_name;
-	int					_grade; //from 1 to 150
+	int					_grade;
 
 public:
 	Bureaucrat();
@@ -19,23 +21,15 @@ public:
 	~Bureaucrat();
 
 	const std::string getName() const;
-	int getGrade() const; //const after is for not modifying the object
+	int getGrade() const;
 	void incrementGrade();
 	void decrementGrade();
+	void signForm(Form &form);
 
 	class   GradeTooHighException: public std::exception
-	//this class inherit from std::exception
-	//so it becomes a type of exception
 	{
 	public:
-		//this is a function:
-		//outputs a const char* (string)
-		//function what() -> standard function used by all exceptions, it will return error message
-		//const after because this function what() does not modify the object
-		//this function never throws, because this class have the error message
 		virtual const char* what() const throw();
-		//what needs to be public, to be called by the functions
-		//virtual because this function can be overriden and supports polymorphism
 	};
 
 	class   GradeTooLowException: public std::exception
