@@ -1,58 +1,47 @@
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include <iostream>
 
 int	main()
 {
-	try
-	{
-		Bureaucrat a("Nino", 40);
-		Form fa("FormNino", 50, 30);
-	
-		std::cout << a << std::endl;
-		std::cout << fa << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	
-	try
-	{
-		Bureaucrat b("Morfeu", 2);
-		Form fb("FormMorfeu", 50, 30);
+	Bureaucrat nino("Nino", 1);
+	Bureaucrat morfeu("Morfeu", 150);
 
-		b.signForm(fb);
+	ShrubberyCreationForm scf("Shrub");
+	RobotomyRequestForm rrf("Robot");
+	PresidentialPardonForm ppf("Presid");
 
-		std::cout << fb << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	//Try signing forms - ShrubberyCreationForm
+	nino.signForm(scf);
+	morfeu.signForm(scf);
+	std::cout << std::endl;
 
-	try
-	{
-		Bureaucrat c("Bernardette", 100);
-		Form fc("FormBernardette", 50, 30);
-	
-		c.signForm(fc);
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	
-	try
-	{
-		Form fd("FormWrong", 0, 200);
+	//Try execute form - ShrubberyCreationForm
+	nino.executeForm(scf);
+	morfeu.executeForm(scf);
+	std::cout << std::endl;
 
-		std::cout << fd << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	//Try signing forms - RobotomyRequestForm
+	morfeu.signForm(rrf);
+	std::cout << std::endl;
+
+	//Try execute form - RobotomyRequestForm
+	nino.executeForm(rrf);
+	morfeu.executeForm(rrf);
+	std::cout << std::endl;
+
+	//Try signing forms - PresidentialPardonForm
+	nino.signForm(ppf);
+	morfeu.signForm(ppf);
+	std::cout << std::endl;
+
+	//Try execute form - PresidentialPardonForm
+	nino.executeForm(ppf);
+	morfeu.executeForm(ppf);
+
 	return (0);
 }

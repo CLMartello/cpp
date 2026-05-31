@@ -1,6 +1,6 @@
 # Flags #
 
-NAME = form
+NAME = allforms
 
 CC = c++
 
@@ -10,7 +10,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJS_DIR := objs
 
-CPPFILES = Bureaucrat.cpp main.cpp Form.cpp
+CPPFILES = Bureaucrat.cpp main.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 
 OBJS = $(CPPFILES:%.cpp=$(OBJS_DIR)/%.o)
 
