@@ -1,16 +1,16 @@
 # Flags #
 
-NAME = internworking
+NAME = convert
 
 CC = c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 # Files #
 
 OBJS_DIR := objs
 
-CPPFILES = Bureaucrat.cpp main.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
+CPPFILES = main.cpp ScalarConverter.cpp
 
 OBJS = $(CPPFILES:%.cpp=$(OBJS_DIR)/%.o)
 
