@@ -28,7 +28,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
-std::string PresidentialPardonForm::getTarget() const
+const std::string &PresidentialPardonForm::getTarget() const
 {
     return(_target);
 }

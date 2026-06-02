@@ -18,7 +18,7 @@ public:
 	Bureaucrat &operator=(const Bureaucrat &copy);
 	~Bureaucrat();
 
-	const std::string getName() const;
+	const std::string &getName() const;
 	int getGrade() const; //const after is for not modifying the object
 	void incrementGrade();
 	void decrementGrade();

@@ -48,7 +48,7 @@ const char * AForm::FormNotSignedException::what() const throw()
     return "This form was not signed!";
 }
 
-const std::string AForm::getName() const {
+const std::string &AForm::getName() const {
     return (_name);
 }
 

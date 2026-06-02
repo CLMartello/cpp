@@ -20,7 +20,7 @@ public:
 	RobotomyRequestForm &operator=(const RobotomyRequestForm &copy);
 	~RobotomyRequestForm();
 
-    std::string getTarget() const;
+    const std::string &getTarget() const;
     void execute(const Bureaucrat &executor) const;
 
 };

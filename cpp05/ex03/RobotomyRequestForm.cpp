@@ -29,7 +29,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &c
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
-std::string RobotomyRequestForm::getTarget() const
+const std::string &RobotomyRequestForm::getTarget() const
 {
     return(_target);
 }

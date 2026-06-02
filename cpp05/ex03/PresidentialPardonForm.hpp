@@ -20,7 +20,7 @@ public:
 	PresidentialPardonForm &operator=(const PresidentialPardonForm &copy);
 	~PresidentialPardonForm();
 
-	std::string getTarget() const;
+	const std::string &getTarget() const;
     void execute(const Bureaucrat &executor) const;
 
 };

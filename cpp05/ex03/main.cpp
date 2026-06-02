@@ -8,13 +8,13 @@
 
 int	main()
 {
-	Intern someRandomIntern;
+	Intern intern;
 
 	//Try ShrubberyCreationForm creation
 	try
 	{
 		AForm* scf;
-		scf = someRandomIntern.makeForm("shrubbery creation", "Lavender");
+		scf = intern.makeForm("shrubbery creation", "Lavender");
 		delete scf;
 	}
 	catch(std::exception &e)
@@ -26,7 +26,7 @@ int	main()
 	try
 	{
 		AForm* rrf;
-		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+		rrf = intern.makeForm("robotomy request", "Bender");
 		delete rrf;
 	}
 	catch(std::exception &e)
@@ -38,7 +38,7 @@ int	main()
 	try
 	{
 		AForm* ppf;
-		ppf = someRandomIntern.makeForm("presidential pardon", "Cassender");
+		ppf = intern.makeForm("presidential pardon", "Cassender");
 		delete ppf;
 	}
 	catch(std::exception &e)
@@ -50,7 +50,7 @@ int	main()
 	try
 	{
 		AForm* ukw;
-		ukw = someRandomIntern.makeForm("anything not valid", "Bartender");
+		ukw = intern.makeForm("anything not valid", "Bartender");
 		delete ukw;
 	}
 	catch(std::exception &e)

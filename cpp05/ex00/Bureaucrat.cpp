@@ -29,7 +29,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &copy) {
 
 Bureaucrat::~Bureaucrat() {}
 
-const 	std::string Bureaucrat::getName() const {
+const 	std::string &Bureaucrat::getName() const {
 	return (_name);
 }
 

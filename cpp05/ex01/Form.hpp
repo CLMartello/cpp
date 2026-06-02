@@ -21,7 +21,7 @@ public:
 	Form &operator=(const Form &copy);
 	~Form();
 
-	const std::string getName() const;
+	const std::string &getName() const;
 	int getSignal() const;
     int getGradeSign() const;
     int getGradeExecute() const;

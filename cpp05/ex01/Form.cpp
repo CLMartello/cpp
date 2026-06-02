@@ -43,7 +43,7 @@ const char * Form::GradeTooLowException::what() const throw()
     return "This grade is too low!";
 }
 
-const std::string Form::getName() const {
+const std::string &Form::getName() const {
     return (_name);
 }
 

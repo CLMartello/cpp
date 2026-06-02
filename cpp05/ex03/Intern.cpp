@@ -36,17 +36,20 @@ static AForm *createRobotomyRequest(const std::string &target)
 }
 
 static AForm *createPresidentialForm(const std::string &target)
+//static function is a membr function that do not belong to the object of the class
 {
     return (new PresidentialPardonForm(target));
 }
 
-AForm *Intern::makeForm(const std::string form, const std::string target)
+AForm *Intern::makeForm(const std::string &form, const std::string &target)
 {
     const std::string validInputs[3] = {
         "shrubbery creation", "robotomy request", "presidential pardon"
     };
 
     AForm* (*validFuntions[3])(const std::string&) = {
+    //array of 3 functions , each element is a pointer to a function
+    //the array has 3 functions, not 3 objects with a function inside (the case to Intern::function)
         &createShrubberyCreation,
         &createRobotomyRequest,
         &createPresidentialForm

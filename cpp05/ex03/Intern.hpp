@@ -15,10 +15,7 @@ public:
     Intern &operator=(Intern &copy);
     ~Intern();
 
-    // AForm *createShrubberyCreation(const std::string &target);
-    // AForm *createRobotomyRequest(const std::string &target);
-    // AForm *createPresidentialForm(const std::string &target);
-    AForm *makeForm(const std::string form, const std::string target);
+    AForm *makeForm(const std::string &form, const std::string &target);
 
     class   NoValidFormException: public std::exception
     {
