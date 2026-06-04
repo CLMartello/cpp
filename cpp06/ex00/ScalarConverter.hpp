@@ -16,12 +16,16 @@ enum Type {
 
 class	ScalarConverter {
 private:
+	ScalarConverter();
+	ScalarConverter(ScalarConverter &copy);
+	ScalarConverter &operator=(ScalarConverter &copy);
+	~ScalarConverter();
 
 public:
-	static void convert(std::string literal);
+	static void convert(std::string &literal);
 
 };
 
-Type detectType(std::string literal);
+Type detectType(std::string &literal);
 
 #endif

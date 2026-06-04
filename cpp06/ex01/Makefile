@@ -1,0 +1,43 @@
+# Flags #
+
+NAME = serializer
+
+CC = c++
+
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -g
+
+# Files #
+
+OBJS_DIR := objs
+
+CPPFILES = main.cpp Serializer.cpp
+
+OBJS = $(CPPFILES:%.cpp=$(OBJS_DIR)/%.o)
+
+# Configuration #
+
+all: $(OBJS_DIR) $(NAME)
+
+$(OBJS_DIR):
+	@mkdir -p $@
+	@echo "Compiled objects."
+
+$(OBJS_DIR)/%.o: %.cpp
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) -o $@
+	@echo "Compiled $(NAME)"
+
+# Phonies #
+
+clean:
+	@rm -rf $(OBJS_DIR)
+	@echo "Cleaned object files"
+
+fclean: clean
+	@rm -rf $(NAME)
+	@echo "Removed program"
+
+re: fclean all
