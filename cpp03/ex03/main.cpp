@@ -12,8 +12,10 @@ int main() {
     ScavTrap b("ScavB");
     std::cout << std::endl;
     FragTrap c("FragC");
+    c.getStats();
     std::cout << std::endl;
     DiamondTrap d("DiamondD");
+    d.getStats();
 
     std::cout << "\n=== BASIC ATTACK TEST ===\n";
 

@@ -35,3 +35,8 @@ void FragTrap::highFivesGuys(void) {
     std::cout << "FragTrap requests a positive high five" << std::endl;
 }
 
+void FragTrap::getStats() const {
+    std::cout << _hitPoint << std::endl;
+    std::cout << _energyPoint << std::endl;
+    std::cout << _attackDamage << std::endl;
+}

@@ -6,7 +6,7 @@
 #include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 
-class DiamondTrap : public FragTrap, public ScavTrap {
+class DiamondTrap : public ScavTrap, public FragTrap {
 private:
     std::string _name;
 
@@ -21,6 +21,7 @@ public:
     //needs to redefine in diamond to avoid ambiguity (call both scav and frag attacks)
     //and will allow to call fragtrap attack later
     void whoAmI();
+    void getStats() const;
 
 };
 
