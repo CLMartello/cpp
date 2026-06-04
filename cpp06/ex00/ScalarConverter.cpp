@@ -4,7 +4,6 @@
 
 Type detectType(std::string literal)
 {
-    //char = single char printable
     if (literal == "-inf" || literal == "+inf" || literal == "nan" ||
          literal == "-inff" || literal == "+inff" || literal == "nanf")
         return (PSEUDO);
@@ -13,26 +12,40 @@ Type detectType(std::string literal)
     size_t i = 0;
     if (literal[i] == '+' || literal[i] == '-')
         i++;
-    for (; i < literal.length(); i++)
-    {
-        if (!isdigit(literal[i]))
-            break;
-    }
+    while (isdigit(literal[i]))
+        i++;
     if (i == literal.length())
         return (INT);
-    
-
+    if (literal[i] == '.')
+        i++;
+    while (isdigit(literal[i]))
+        i++;
+    if (i == literal.length())
+        return (DOUBLE);
+    if (literal[i] == 'f' && i == (literal.length() - 1))
+        return (FLOAT);
     return (INVALID);
 }
 
-// static void convert(std::string literal) {
+static void convert(std::string literal) {
 
-//     //take literal, discover type
-//     //convert to char, int, float, double minus type
-//     //detect type
-//     //print type that are not original type
+    Type type = detectType(literal);
+    if (type == PSEUDO || type == INVALID)
+        return (do something);
+    for (int i = 0; i < 4; i++)
+    {
+        if (type != i)
+        {
+            convert_type[i];
+            printf_type[i];
+        }
+    }
+    //take literal, discover type
+    //convert to char, int, float, double minus type
+    //detect type
+    //print type that are not original type
 
-// }
+}
 
 //pseudo-literal = valid inputs, but must not be converted
 //double - nan = not a number

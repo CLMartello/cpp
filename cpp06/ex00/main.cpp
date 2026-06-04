@@ -4,6 +4,6 @@
 
 int main()
 {
-    std::cout << detectType("a") << std::endl;
+    std::cout << detectType("+infff") << std::endl;
     return (0);
 }
