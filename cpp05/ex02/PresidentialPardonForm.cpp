@@ -4,12 +4,12 @@
 #include "Bureaucrat.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm()
-    : AForm("RobotomyRequestForm", 25, 5),
+    : AForm("PresidentialPardonForm", 25, 5),
       _target("Default")
 {}
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string target)
-    : AForm("RobotomyRequestForm", 25, 5),
+    : AForm("PresidentialPardonForm", 25, 5),
       _target(target)
 {}
 

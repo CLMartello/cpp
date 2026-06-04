@@ -26,7 +26,7 @@ int	main()
 	std::cout << std::endl;
 
 	//Try signing forms - RobotomyRequestForm
-	morfeu.signForm(rrf);
+	nino.signForm(rrf);
 	std::cout << std::endl;
 
 	//Try execute form - RobotomyRequestForm
