@@ -4,34 +4,25 @@
 
 int	main()
 {
-	Bureaucrat a("Nino", 120);
-	Bureaucrat b("Morfeu", 2);
-
-	Bureaucrat c = b;
-
-	std::cout << a;
-	std::cout << b;
-
 	try
 	//try is = watch this code
 	//defines a protected zone
 	{
+		Bureaucrat a("Nino", 120);
+		Bureaucrat b("Morfeu", 2);
+
+		Bureaucrat c = b;
+
+		std::cout << a;
+		std::cout << b;
+
 		c.incrementGrade();
 		//calls a function that has a throw inside
 		//throw is something went wrong
 		//throw will jump the code to the next catch and continue from there
 		std::cout << c;
 		c.incrementGrade();
-	}
-	catch (std::exception &e)
-	//catch is handle the problem
-	//way of catching the exception type
-	{
-		std::cout << e.what() << std::endl;
-		//calls your version of what linked to that class exception
-	}
-	try
-	{
+		
 		Bureaucrat d("Lorena", 500);
 	}
 	catch (std::exception &e)
