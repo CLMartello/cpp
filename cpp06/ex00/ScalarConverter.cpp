@@ -47,7 +47,7 @@ void printInt(double value)
 
 void printFloat(double value)
 {
-    if (value > FLT_MAX || value < FLT_MIN)
+    if (value > FLT_MAX || value < -FLT_MAX)
         std::cout << "float: impossible" << std::endl;
     else
     {
@@ -58,7 +58,7 @@ void printFloat(double value)
 
 void printDouble(double value)
 {
-    if (value > DBL_MAX || value < DBL_MIN)
+    if (value > DBL_MAX || value < -DBL_MAX)
         std::cout << "double: impossible" << std::endl;
     else
     {
