@@ -8,7 +8,7 @@
 
 Base::~Base() {}
 
-Base * generate(void)
+Base* generate(void)
 {
     int index = rand() % 3;
     switch(index)
@@ -26,13 +26,21 @@ Base * generate(void)
 
 void identify(Base* p)
 {
+    if (p == NULL)
+        return;
+
     if (dynamic_cast<A*>(p))
         std::cout << "A" << std::endl;
     else if (dynamic_cast<B*>(p))
         std::cout << "B" << std::endl;
     else if (dynamic_cast<C*>(p))
         std::cout << "C" << std::endl;
+    else
+        std::cout << "Unknown type" << std::endl;
 }
+
+//dynamic_cast check real object type at runtime
+//RTTI = runtime type identification using polymorphism
 
 void identify(Base& p)
 {
@@ -57,4 +65,7 @@ void identify(Base& p)
         return ;
     }
     catch(...) {}
+    // ... = catch all handler, cathes any exception
+    //{} do nothing, to not show in ouput the errors
+    //silence failure
 }

@@ -22,10 +22,17 @@ private:
 	~ScalarConverter();
 
 public:
+	//static method does not need a object
 	static void convert(std::string &literal);
 
 };
 
 Type detectType(std::string &literal);
+void printChar(std::string literal);
+void printInt(double value);
+void printFloat(double value);
+void printDouble(double value);
+void printNumber(std::string &literal);
+void printPseudo(std::string &literal);
 
 #endif

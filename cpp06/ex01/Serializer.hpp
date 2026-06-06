@@ -4,7 +4,7 @@
 #define SERIALIZER_HPP
 
 #include <string>
-#include <stdint.h>
+#include <cstdint>
 
 struct Data {
     int value;
