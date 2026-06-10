@@ -4,7 +4,7 @@
 #define ARRAY_HPP
 
 #include <cstdlib>
-#include <exception>
+#include <stdexcept>
 
 template <typename T>
 class Array
@@ -13,80 +13,73 @@ private:
     T               *_data;
     unsigned int   _size;
 public:
-    Array();
-    Array(unsigned int n);
-    Array(Array &copy);
-    Array<T> &operator=(const Array<T> &copy);
-    ~Array();
 
-    int size() const;
-    T &operator[](const unsigned int n);
+    Array() : _data(NULL), _size(0) {}
 
-    class InvalidIndex: public std::exception
+    Array(unsigned int n)
     {
-    public:
-        virtual const char * what() const throw()
+        if (n > 0)
         {
-            return ("Invalid index");
+            _data = new T[n];
+            _size = n;
         }
-    };
+        else
+        {
+            _data = NULL;
+            _size = 0;
+        }
+    }
+
+    Array(const Array &copy)
+    {
+        this->_size = copy._size;
+        this->_data = new T[_size];
+        for (unsigned int i = 0; i < _size; i++)
+        {
+            this->_data[i] = copy._data[i];
+        }
+    }
+
+    Array &operator=(const Array &copy)
+    {
+        if (this != &copy)
+        {
+            delete[] this->_data;
+            this->_size = copy._size;
+            this->_data = new T[_size];
+            for (unsigned int i = 0; i < _size; i++)
+            {
+                this->_data[i] = copy._data[i];
+            }
+        }
+        return (*this);
+    }
+
+    ~Array()
+    {
+        if (_data)
+            delete[] _data;
+    }
+
+    int size() const
+    {
+        return(_size);
+    }
+
+    T &operator[](unsigned int index)
+    {
+        if (index >= _size)
+            throw std::out_of_range("Invalid index");
+        return(_data[index]);
+    }
+
+    const T &operator[](unsigned int index) const
+    {
+        if (index >= _size)
+            throw std::out_of_range("Invalid index");
+        return(_data[index]);
+    }
 
 };
-
-template <typename T>
-Array<T>::Array()
-    : _data(NULL), _size(0) {}
-
-template <typename T>
-Array<T>::Array(unsigned int n)
-{
-    _data = new T[n];
-    _size = n;
-}
-
-template <typename T>
-Array<T>::Array(Array &copy)
-{
-    this->_data = new T[copy.size()];
-    for (int i = 0; i < copy.size(); i++)
-    {
-        this[i] = copy[i];
-    }
-}
-
-template <typename T>
-Array<T> &Array<T>::operator=(const Array<T> &copy)
-{
-    if (this != &copy)
-    {
-        delete[] this->_data;
-        this->_data = new T[copy.size()];
-        for (int i = 0; i < copy.size(); i++)
-        {
-            this[i] = copy[i];
-        }
-    }
-    return (*this);
-}
-
-template <typename T>
-Array<T>::~Array ()
-{
-    delete[] _data;
-}
-
-template <typename T>
-int Array<T>::size () const
-{
-    return(_size);
-}
-
-template <typename T>
-T &Array<T>::operator[](const unsigned int n)
-{
-    if (n >= _size)
-        throw InvalidIndex();
-    return(_data[n]);
-}
 
 #endif

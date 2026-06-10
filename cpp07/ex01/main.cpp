@@ -2,7 +2,7 @@
 #include "iter.hpp"
 #include <iostream>
 
-void    function_numb(int &n)
+void    function_numb(const int &n)
 {
     std::cout << n * 2 << std::endl;
 }
