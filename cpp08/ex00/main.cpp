@@ -12,7 +12,7 @@ int main()
         for (int i = 0; i < 5; i++)
             v.push_back(i);
         std::cout << "Vector: ";
-        for (int i = 0; i < v.size(); i++)
+        for (size_t i = 0; i < v.size(); i++)
             std::cout << v[i] << " ";
         std::cout << std::endl << std::endl;
         std::cout << "Success:" << std::endl;
@@ -38,7 +38,8 @@ int main()
                 l.push_back(i);
         }
         std::cout << "List: ";
-        for (auto it = l.begin(); it != l.end(); ++it)
+        std::list<int>::iterator it;
+        for (it = l.begin(); it != l.end(); ++it)
             std::cout << *it << " ";
         std::cout << std::endl << std::endl;      
         std::cout << "Success:" << std::endl;

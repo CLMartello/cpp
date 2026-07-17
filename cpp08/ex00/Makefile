@@ -1,6 +1,6 @@
 # Flags #
 
-NAME = whatever
+NAME = easyfind
 
 CC = c++
 
