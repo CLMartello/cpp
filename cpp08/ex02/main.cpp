@@ -41,9 +41,9 @@ int main()
     std::cout << "Methods of stack in MutantStack" << std::endl;
     std::cout << "top(): " << mstack.top() << std::endl;
     std::cout << "empty(): " << mstack.empty() << std::endl;
-    s.pop();
+    mstack.pop();
     std::cout << "top() after pop(): " << mstack.top() << std::endl;
-    s.push(555);
+    mstack.push(555);
     std::cout << "top() after push(555): " << mstack.top() << std::endl << std::endl;
 
     MutantStack<int>::reverse_iterator rit = mstack.rbegin();
