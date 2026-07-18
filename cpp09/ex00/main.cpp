@@ -3,16 +3,16 @@
 int checkDate(std::string date)
 {
     if (date[4] != '-' && date[7] != '-')
-        throw std::runtime_error("Error: date is not separated by -\n");
+        return (1);
     for (size_t i = 0; i < 4; ++i)
         if (!isdigit(date[i]))
-            throw std::runtime_error("Error: date is not a digit\n");
+            return(1);
     for (size_t i = 5; i < 7; ++i)
         if (!isdigit(date[i]))
-            throw std::runtime_error("Error: date is not a digit\n");
+            return (1);
     for (size_t i = 8; i < 10; ++i)
         if (!isdigit(date[i]))
-            throw std::runtime_error("Error: date is not a digit\n");
+            return (1);
     return (0); 
 }
 
@@ -49,7 +49,7 @@ void    readCsv()
     while (getline(file, str))
     {
         if (str[10] != ',' || str.length() < 12)
-            throw std::runtime_error("Error: csv file without comma\n");
+            throw std::runtime_error("Error: csv file without comma or too small\n");
         std::string date = str.substr(0, 10);
         if (checkDate(date) == 1)
             throw std::runtime_error("Error: problem in date of csv file\n");
@@ -78,10 +78,10 @@ void    readInput(std::string input)
     while (getline(file, str))
     {
         if (str[11] != '|' || str.length() < 14)
-            throw std::runtime_error("Error: csv file without comma\n");
+            throw std::runtime_error("Error: input file without pipe or too small\n");
         std::string date = str.substr(0, 10);
         if (checkDate(date) == 1)
-            throw std::runtime_error("Error: problem in date of csv file\n");
+            std::cout << "Error: bad input => " << date << std::endl;
         std::string strvalue = str.substr(11, str.length());
         if (checkValue(strvalue) == 1)
             throw std::runtime_error("Error: problem in value of csv file\n");
