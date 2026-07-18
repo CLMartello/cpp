@@ -49,7 +49,7 @@ int Span::shortestSpan() const
         return (distance);
     }
     else
-        throw std::runtime_error("Too small size to calculate span of container\n");
+        throw std::runtime_error("Error: Too small size to calculate span of container\n");
 }
 
 int Span::longestSpan() const
@@ -61,5 +61,5 @@ int Span::longestSpan() const
         return ((max - min));
     }
     else
-        throw std::runtime_error("Too small size to calculate span of container\n");
+        throw std::runtime_error("Error: Too small size to calculate span of container\n");
 }

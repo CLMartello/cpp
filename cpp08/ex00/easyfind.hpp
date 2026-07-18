@@ -7,6 +7,7 @@
 #include <algorithm>
 
 //iterator is an object that behaves like a pointer
+//poiting to the elements of a container
 template <typename T> void easyfind(T& container, int value)
 {
     typename T::iterator it;
