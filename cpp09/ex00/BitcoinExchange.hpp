@@ -12,10 +12,16 @@
 class BitcoinExchange
 {
 private:
-
+    std::map<std::string, float> _map;
 public:
-};
+    BitcoinExchange();
+    ~BitcoinExchange();
+    BitcoinExchange(const BitcoinExchange& copy);
+    BitcoinExchange& operator=(const BitcoinExchange& copy);
 
-void    readCsv();
+    void buildMap();
+    void readInput(std::string filename);
+    float getRate(std::string date);
+};
 
 #endif
