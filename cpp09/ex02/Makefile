@@ -1,6 +1,6 @@
 # Flags #
 
-NAME = easyfind
+NAME = PmergeMe
 
 CC = c++
 
@@ -10,7 +10,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 OBJS_DIR := objs
 
-CPPFILES = main.cpp
+CPPFILES = main.cpp PmergeMe.cpp
 
 OBJS = $(CPPFILES:%.cpp=$(OBJS_DIR)/%.o)
 
