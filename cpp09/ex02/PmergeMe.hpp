@@ -12,10 +12,8 @@
 class PmergeMe
 {
 private:
-    std::vector<int> vec;
-    std::vector<std::pair<int, int> > pairs;
-    std::deque<int> deq;
-    int leftover;
+    std::vector<int> _vecN;
+    std::deque<int> _deqN;
 public:
     PmergeMe();
     ~PmergeMe();
@@ -23,9 +21,9 @@ public:
     PmergeMe& operator=(const PmergeMe& other);
 
     void parseInput(int size, char **input);
-    void pairNumbersVec();
-    void jacobsthal(size_t size);
-    void insert();
+    void mergeInsertionSort();
+    void mergeVec();
+    void mergeDeq();
 };
 
 #endif

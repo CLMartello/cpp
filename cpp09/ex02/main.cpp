@@ -12,11 +12,7 @@ int main(int argc, char **argv)
     {
         PmergeMe sequence;
         sequence.parseInput(argc, argv);
-        sequence.printUnsorted();
-        sequence.pairNumbers();
-        sequence.winnersSort();
-        sequence.insert();
-        sequence.printSorted();
+        sequence.mergeInsertionSort();
     }
     catch (std::exception &e)
     {

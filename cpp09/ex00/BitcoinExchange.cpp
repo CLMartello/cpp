@@ -51,6 +51,38 @@ void BitcoinExchange::buildMap()
     file.close();
 }
 
+static bool valiDate(std::string date)
+{
+    if (date.length() != 10 || date[4] != '-' || date[7] != '-')
+        return (false);
+
+    int year, month, day;
+
+    std::stringstream(date.substr(0, 4)) >> year;
+    std::stringstream(date.substr(5, 2)) >> month;
+    std::stringstream(date.substr(8, 2)) >> day;
+
+    if (year < 1970 || year > 2026)
+        return (false);
+
+    bool leapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+
+    switch(month)
+    {
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            return (day >= 1 && day <= 31);
+        
+        case 4: case 6: case 9: case 11:
+            return (day >=1 && day <= 30);
+
+        case 2:
+            return (day >= 1 && day <= (leapYear ? 29 : 28));
+
+        default:
+            return (false);
+    }
+}
+
 float    BitcoinExchange::getRate(std::string date)
 {
     std::map<std::string, float>::const_iterator it = _map.lower_bound(date);
@@ -98,6 +130,11 @@ void BitcoinExchange::readInput(std::string filename)
         float value;
         ssvalue >> value;
 
+        if (!valiDate(date))
+        {
+            std::cout << "Error: bad date => " << line << std::endl;
+            continue;
+        }           
         if (ssvalue.fail())
         {
             std::cout << "Error: bad input => " << strvalue << std::endl;
