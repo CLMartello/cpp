@@ -8,6 +8,7 @@
 #include <exception>
 #include <fstream>
 #include <cfloat>
+#include <cstdlib>
 
 class BitcoinExchange
 {

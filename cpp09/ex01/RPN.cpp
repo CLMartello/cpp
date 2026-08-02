@@ -43,11 +43,11 @@ void RPN::processExpression(std::string input)
     std::stringstream ss(input);
     std::string token;
 
-    if (token.length() != 1)
-        throw std::runtime_error("Error\n");
-
     while (ss >> token)
     {
+        if (token.length() != 1)
+            throw std::runtime_error("Error\n");
+
         if (isdigit(token[0]))
             _stack.push(token[0] - '0');
         else if (token == "+" || token == "-" || token == "*" || token == "/")
@@ -59,6 +59,8 @@ void RPN::processExpression(std::string input)
         else
             throw std::runtime_error("Error\n");
     }
+    if (_stack.size() != 1)
+        throw std::runtime_error("Error\n");
 }
 
 int RPN::getResult()

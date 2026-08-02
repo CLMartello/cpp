@@ -17,38 +17,24 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& copy)
     return (*this);
 }
 
-void BitcoinExchange::buildMap()
+float validFloat(std::string strvalue)
 {
-    std::ifstream file;
-
-    file.open("data.csv");
-    if (!file)
-        throw std::runtime_error("Error: could not open csv data file.\n");
+    char* endptr;
     
-    std::string line;
-    std::getline(file, line);
+    float value = std::strtof(strvalue.c_str(), &endptr);
+    if (endptr == strvalue.c_str() || *endptr != '\0' || errno == ERANGE)
+        return (-1);
+    return (value);
+}
+
+float validInt(std::string strvalue)
+{
+    char* endptr;
     
-    while (std::getline(file, line))
-    {
-        std::stringstream ss(line);
-        std::string date;
-        std::string strvalue;
-
-        if (!std::getline(ss, date, ',')) //getline until the comma, removes comma
-            throw std::runtime_error("Error: bad input => csv date\n");
-        if (!std::getline(ss, strvalue)) //getline of what was left in line
-            throw std::runtime_error("Error: bad input => csv line size\n");
-
-        std::stringstream ssvalue(strvalue);
-        float value;
-        ssvalue >> value;
-
-        if (ssvalue.fail())
-            throw std::runtime_error("Error: bad input => csv float\n");
-
-        _map[date]=value;  
-    }
-    file.close();
+    int value = std::strtol(strvalue.c_str(), &endptr, 10);
+    if (endptr == strvalue.c_str() || *endptr != '\0' || errno == ERANGE)
+        return (-1);
+    return (value);
 }
 
 static bool valiDate(std::string date)
@@ -56,11 +42,9 @@ static bool valiDate(std::string date)
     if (date.length() != 10 || date[4] != '-' || date[7] != '-')
         return (false);
 
-    int year, month, day;
-
-    std::stringstream(date.substr(0, 4)) >> year;
-    std::stringstream(date.substr(5, 2)) >> month;
-    std::stringstream(date.substr(8, 2)) >> day;
+    int year = validInt(date.substr(0, 4));
+    int month = validInt(date.substr(5, 2));
+    int day = validInt(date.substr(8, 2));
 
     if (year < 1970 || year > 2026)
         return (false);
@@ -83,17 +67,50 @@ static bool valiDate(std::string date)
     }
 }
 
+void BitcoinExchange::buildMap()
+{
+    std::ifstream file;
+
+    file.open("data.csv");
+    if (!file)
+        throw std::runtime_error("Error: could not open csv data file.\n");
+    
+    std::string line;
+    std::getline(file, line);
+    
+    while (std::getline(file, line))
+    {
+        std::stringstream ss(line);
+        std::string date;
+        std::string strvalue;
+
+        if (!std::getline(ss, date, ',') || !valiDate(date))
+            throw std::runtime_error("Error: bad input => csv date\n");
+        
+        if (!std::getline(ss, strvalue))
+            throw std::runtime_error("Error: bad input => csv float\n");
+        
+        float value = validFloat(strvalue);
+        if (value == -1)
+            throw std::runtime_error("Error: bad input => csv float\n");
+
+        _map[date]=value;  
+    }
+    file.close();
+}
+
+
+
 float    BitcoinExchange::getRate(std::string date)
 {
     std::map<std::string, float>::const_iterator it = _map.lower_bound(date);
-    //lower_bound return first element that is >= to date
 
     if (it != _map.end() && it->first == date)
         return (it->second);
 
     if (it == _map.begin())
     {
-        std::cout << "Error: bad input => " << date << std::endl;
+        std::cout << "Error: bad date => " << date << std::endl;
         return (-1);
     }
     --it;
@@ -122,25 +139,18 @@ void BitcoinExchange::readInput(std::string filename)
             continue;            
         }
 
-        //trim spaces
         date.erase(date.size() - 1);
         strvalue.erase(0, 1);
-
-        std::stringstream ssvalue(strvalue);
-        float value;
-        ssvalue >> value;
 
         if (!valiDate(date))
         {
             std::cout << "Error: bad date => " << line << std::endl;
             continue;
-        }           
-        if (ssvalue.fail())
-        {
-            std::cout << "Error: bad input => " << strvalue << std::endl;
-            continue;
         }
-        if (value < 0)
+        float value = validFloat(strvalue);
+        if (value == -1) 
+            std::cout << "Error: bad input => " << strvalue << std::endl;
+        else if (value < 0)
             std::cout << "Error: not a positive number." << std::endl;
         else if (value > 1000)
             std::cout << "Error: too large a number." << std::endl;
