@@ -8,6 +8,7 @@
 #include <climits>
 #include <iostream>
 #include <stdlib.h>
+#include <algorithm>
 
 class PmergeMe
 {
@@ -22,8 +23,8 @@ public:
 
     void parseInput(int size, char **input);
     void mergeInsertionSort();
-    void mergeVec();
-    void mergeDeq();
+    std::vector<int> mergeInsertVec(std::vector<int> vec);
+    std::deque<int> mergeInsertDeq(std::deque<int> deq);
 };
 
 #endif

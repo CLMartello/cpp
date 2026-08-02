@@ -59,12 +59,12 @@ void PmergeMe::mergeInsertionSort()
         struct timespec start, end;
 
         clock_gettime(CLOCK_MONOTONIC, &start);
-        mergeVec();
+        _vecN = mergeInsertVec(_vecN);
         clock_gettime(CLOCK_MONOTONIC, &end);
         vecTime = (end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_nsec - start.tv_nsec) / 1000.0;
 
         clock_gettime(CLOCK_MONOTONIC, &start);
-        mergeDeq();
+        _deqN = mergeInsertDeq(_deqN);
         clock_gettime(CLOCK_MONOTONIC, &end);
         deqTime = (end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_nsec - start.tv_nsec) / 1000.0;
 
@@ -87,10 +87,10 @@ void PmergeMe::mergeInsertionSort()
 
 // - Vector Functions
 
-static void insertVec(std::vector<int>& vec, int value)
+static void insertVec(std::vector<int>& vec, int value, size_t pos)
 {
-    std::vector<int>::iterator pos = std::lower_bound(vec.begin(), vec.end(), value);
-    vec.insert(pos, value);
+    std::vector<int>::iterator it = std::lower_bound(vec.begin(), vec.begin() + pos, value);
+    vec.insert(it, value);
 }
 
 static std::vector<size_t> jacobsthalVec(size_t size)
@@ -120,48 +120,54 @@ static std::vector<size_t> jacobsthalVec(size_t size)
     return (jacobVec);
 }
 
-void PmergeMe::mergeVec()
+std::vector<int> PmergeMe::mergeInsertVec(std::vector<int> vec)
 {
+    if (vec.size() <= 1)
+        return (vec);
+
     int leftover = -1;
     std::vector<std::pair<int, int> > pairs;
-    for (size_t i = 0; i < _vecN.size(); i += 2)
+    for (size_t i = 0; i < vec.size(); i += 2)
     {
-        if (i + 1 < _vecN.size())
+        if (i + 1 < vec.size())
         {
-            int first = _vecN[i];
-            int second = _vecN[i + 1];
+            int first = vec[i];
+            int second = vec[i + 1];
             if (first > second)
                 std::swap(first, second);
 
             pairs.push_back(std::make_pair(first, second));
         }
         else
-            leftover = _vecN[i];
+            leftover = vec[i];
     }
 
     std::vector<int> mainChain;
     for (size_t j = 0; j < pairs.size(); ++j)  
-        insertVec(mainChain, pairs[j].second);
+        mainChain.push_back(pairs[j].second);
+
+    mainChain = mergeInsertVec(mainChain);
     
     std::vector<size_t> jacobVec = jacobsthalVec(pairs.size());
     for (size_t k = 0; k < jacobVec.size(); ++k)
     {
         size_t index = jacobVec[k] - 1;
-        insertVec(mainChain, pairs[index].first);
+        size_t pos = std::find(mainChain.begin(), mainChain.end(), pairs[index].second) - mainChain.begin();
+        insertVec(mainChain, pairs[index].first, pos);
     }
 
     if (leftover != -1)
-        insertVec(mainChain, leftover);
+        insertVec(mainChain, leftover, mainChain.size());
 
-    _vecN = mainChain;
+    return (mainChain);
 }
 
 // - Deque Functions
 
-static void insertDeq(std::deque<int>& deq, int value)
+static void insertDeq(std::deque<int>& deq, int value, size_t pos)
 {
-    std::deque<int>::iterator pos = std::lower_bound(deq.begin(), deq.end(), value);
-    deq.insert(pos, value);
+    std::deque<int>::iterator it = std::lower_bound(deq.begin(), deq.begin() + pos, value);
+    deq.insert(it, value);
 }
 
 static std::deque<size_t> jacobsthalDeq(size_t size)
@@ -191,40 +197,46 @@ static std::deque<size_t> jacobsthalDeq(size_t size)
     return (jacobDeq);
 }
 
-void PmergeMe::mergeDeq()
+std::deque<int> PmergeMe::mergeInsertDeq(std::deque<int> deq)
 {
+    if (deq.size() <= 1)
+        return (deq);
+
     int leftover = -1;
     std::deque<std::pair<int, int> > pairs;
-    for (size_t i = 0; i < _deqN.size(); i += 2)
+    for (size_t i = 0; i < deq.size(); i += 2)
     {
-        if (i + 1 < _deqN.size())
+        if (i + 1 < deq.size())
         {
-            int first = _deqN[i];
-            int second = _deqN[i + 1];
+            int first = deq[i];
+            int second = deq[i + 1];
             if (first > second)
                 std::swap(first, second);
 
             pairs.push_back(std::make_pair(first, second));
         }
         else
-            leftover = _deqN[i];
+            leftover = deq[i];
     }
 
     std::deque<int> mainChain;
     for (size_t j = 0; j < pairs.size(); ++j)
-        insertDeq(mainChain, pairs[j].second);
+        mainChain.push_back(pairs[j].second);
+
+    mainChain = mergeInsertDeq(mainChain);
 
     std::deque<size_t> jacobDeq = jacobsthalDeq(pairs.size());
     for (size_t k = 0; k < jacobDeq.size(); ++k)
     {
         size_t index = jacobDeq[k] - 1;
-        insertDeq(mainChain, pairs[index].first);
+        size_t pos = std::find(mainChain.begin(), mainChain.end(), pairs[index].second) - mainChain.begin();
+        insertDeq(mainChain, pairs[index].first, pos);
     }
 
     if (leftover != -1)
-        insertDeq(mainChain, leftover);
+        insertDeq(mainChain, leftover, mainChain.size());
 
-    _deqN = mainChain;
+    return (mainChain);
 }
 
 
